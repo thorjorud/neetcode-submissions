@@ -1,0 +1,23 @@
+class Solution:
+    '''
+    Time: O(n)
+        - Each char can be hit a max of 2 times.
+    Space: O(m)
+        - The seen set can hold up to m unique chars from s.
+    '''
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        max_win = 0
+        seen = set()
+
+        left = 0
+        for right in range(len(s)):
+            while s[right] in seen:
+                seen.remove(s[left])
+                left += 1
+            seen.add(s[right])
+            max_win = max(max_win, right - left + 1)
+        return max_win
+
+
+        
+            
